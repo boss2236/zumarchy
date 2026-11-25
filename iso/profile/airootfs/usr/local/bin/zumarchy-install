@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Zumarchy bootstrap installer (live medium).
+# Zumarchy is a customized fork of Omarchy (DHH / 37signals), MIT-licensed, with credit.
+set -euo pipefail
+
+GREEN=$'\033[32m'; RST=$'\033[0m'; BOLD=$'\033[1m'
+clear || true
+printf '%s' "$GREEN"; cat /usr/share/zumarchy/logo.txt 2>/dev/null || true; printf '%s\n\n' "$RST"
+echo "${BOLD}Zumarchy installer${RST} — a customized Linux built on Omarchy."
+echo "Original work (c) the Omarchy project (DHH / 37signals). MIT licensed."
+echo
+
+REPO="${ZUMARCHY_REPO:-https://github.com/boss2236/zumarchy}"
+DEST="${ZUMARCHY_PATH:-/opt/zumarchy}"
+
+if [[ ! -d $DEST/.git ]]; then
+  echo ":: Fetching Zumarchy source from $REPO ..."
+  git clone --depth 1 "$REPO" "$DEST"
+else
+  echo ":: Using existing Zumarchy source at $DEST"
+fi
+
+export OMARCHY_PATH="$DEST"
+export PATH="$DEST/bin:$PATH"
+
+echo
+echo ":: Zumarchy source is ready at $DEST"
+echo "   Version: $(cd "$DEST" && git rev-parse --short HEAD 2>/dev/null || echo unknown)"
+echo
+echo "This live medium carries Zumarchy's full source and tooling (bin/, config/,"
+echo "default/, install/, themes/). Its install orchestration lives under:"
+echo "   $DEST/install/   (user/all.sh, hardware/all.sh, config/, post-install/)"
+echo
+echo "Next: partition and bootstrap an Arch base onto the target disk, then run"
+echo "Zumarchy's install steps against it with OMARCHY_PATH set to $DEST."
+echo "See $DEST/README.md and the Zumarchy manual for the full flow."
+echo
+echo "${BOLD}Zumarchy is ready.${RST}  OMARCHY_PATH=$DEST  (bin/ is on your PATH)"

@@ -1,77 +1,75 @@
-# Zumarchy
+<p align="center">
+  <img src="docs/images/hero.png" alt="Zumarchy" width="880">
+</p>
 
-Zumarchy is a customized Linux distribution built on top of [Omarchy](https://omarchy.org) by DHH — beautiful, fun & agentic, rebuilt and tailored piece by piece.
+<p align="center">
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-2fd98b.svg" alt="MIT License"></a>
+  <img src="https://img.shields.io/badge/base-Arch%20Linux-1793d1.svg" alt="Arch Linux">
+  <img src="https://img.shields.io/badge/built%20on-Omarchy-36e0a0.svg" alt="Built on Omarchy">
+</p>
 
-> **Credit & attribution:** Zumarchy is a fork of **Omarchy** (by DHH / 37signals). All of the original foundation, tooling, and design is their work; Zumarchy only layers its own customizations on top. Huge thanks to the Omarchy project. Learn about the original at [omarchy.org](https://omarchy.org).
+**Zumarchy** is a beautiful, fun & agentic Linux distribution — a customized fork of [Omarchy](https://omarchy.org) (by DHH / 37signals), rebuilt and tailored piece by piece.
+
+> **Credit & attribution.** Zumarchy stands entirely on the shoulders of **Omarchy**. All of the original foundation, tooling, design, and the desktop itself are the work of the Omarchy project (DHH / 37signals). Zumarchy only layers its own branding and customizations on top. Huge thanks to the Omarchy team — learn about the original at [omarchy.org](https://omarchy.org).
+
+---
+
+## What is Zumarchy?
+
+Zumarchy is Omarchy's clean, modern Arch + Hyprland desktop, re-skinned and being rebuilt into its own thing. It keeps Omarchy's strengths — a fast agentic workflow, a gorgeous Wayland desktop, and sane defaults — while carrying its own identity. Because it tracks Omarchy upstream, it keeps inheriting their improvements.
+
+## Screenshots
+
+<p align="center">
+  <img src="docs/images/boot.png" alt="Zumarchy ISO booting" width="760">
+  <br><em>The Zumarchy live/install medium booting.</em>
+</p>
+
+## Install
+
+Grab the Zumarchy ISO (or build it yourself — see below), write it to a USB stick, and boot it:
+
+```bash
+# write the image to a USB drive (replace sdX with your device!)
+sudo dd if=zumarchy-*.iso of=/dev/sdX bs=4M status=progress oflag=sync
+```
+
+From the live environment, start the guided bootstrap:
+
+```bash
+zumarchy-install
+```
+
+## Build the ISO yourself
+
+Zumarchy ships an [`archiso`](https://wiki.archlinux.org/title/Archiso) profile under [`iso/`](iso/):
+
+```bash
+sudo pacman -S --needed archiso
+sudo mkarchiso -v -w /tmp/zumarchy-work -o ./out iso/profile
+# -> ./out/zumarchy-<version>-x86_64.iso
+```
+
+## Build / run from source
+
+The whole system is a layer of shell scripts, configs, and the `omarchy-*` CLI:
+
+```bash
+git clone https://github.com/boss2236/zumarchy
+export OMARCHY_PATH="$PWD/zumarchy"
+export PATH="$OMARCHY_PATH/bin:$PATH"
+omarchy-show-logo      # say hello
+```
 
 ## The Zumarchy Manual
 
 The manual lives in [`manual/`](manual/), which is its authoritative source.
 
-- [Welcome to Omarchy!](manual/01-welcome-to-omarchy.md)
+- [Welcome](manual/01-welcome-to-omarchy.md) · [Getting Started](manual/02-getting-started.md) · [Navigation](manual/04-navigation.md) · [The top bar](manual/05-the-top-bar.md) · [Themes](manual/06-themes.md) · [Hotkeys](manual/07-hotkeys.md)
+- [Applications](manual/15-terminal.md) · [AI](manual/17-ai.md) · [Development Tools](manual/18-development-tools.md) · [Web Apps](manual/25-web-apps.md) · [Gaming](manual/26-gaming.md)
+- [Updates](manual/30-updates.md) · [Monitors](manual/33-monitors.md) · [Networking](manual/35-networking.md) · [Branding](manual/41-branding.md) · [Making your own theme](manual/43-making-your-own-theme.md)
+- [Troubleshooting](manual/45-troubleshooting.md) · [FAQ](manual/46-faq.md) · [Security](manual/48-security.md)
 
-**The Basics**
+## Credit & License
 
-- [Getting Started](manual/02-getting-started.md)
-- [Coming From Mac or Windows](manual/03-coming-from-mac-or-windows.md)
-- [Navigation](manual/04-navigation.md)
-- [The top bar](manual/05-the-top-bar.md)
-- [Themes](manual/06-themes.md)
-- [Hotkeys](manual/07-hotkeys.md)
-- [Unified Clipboard & History](manual/08-unified-clipboard-history.md)
-- [Reminders](manual/09-reminders.md)
-- [Notices](manual/10-notices.md)
-- [Text Extraction & Dictation](manual/11-text-extraction-dictation.md)
-- [Screenshots & Recording](manual/12-screenshots-recording.md)
-- [Toggles, idle & screensaver](manual/13-toggles-idle-screensaver.md)
-- [Omarchy CLI](manual/14-omarchy-cli.md)
-
-**The Applications**
-
-- [Terminal](manual/15-terminal.md)
-- [Neovim](manual/16-neovim.md)
-- [AI](manual/17-ai.md)
-- [Development Tools](manual/18-development-tools.md)
-- [Shell Tools](manual/19-shell-tools.md)
-- [Shell Functions](manual/20-shell-functions.md)
-- [TUIs](manual/21-tuis.md)
-- [GUIs](manual/22-guis.md)
-- [Browsers](manual/23-browsers.md)
-- [Commercial apps/services](manual/24-commercial-apps-services.md)
-- [Web Apps](manual/25-web-apps.md)
-- [Gaming](manual/26-gaming.md)
-- [Filling out PDFs](manual/27-filling-out-pdfs.md)
-- [Windows VM](manual/28-windows-vm.md)
-- [Other Packages](manual/29-other-packages.md)
-
-**Configuration**
-
-- [Updates](manual/30-updates.md)
-- [Dotfiles](manual/31-dotfiles.md)
-- [Shell plugins](manual/32-shell-plugins.md)
-- [Monitors](manual/33-monitors.md)
-- [Keyboard, Mouse, Trackpad](manual/34-keyboard-mouse-trackpad.md)
-- [Networking](manual/35-networking.md)
-- [System sleep](manual/36-system-sleep.md)
-- [Hardware authentication](manual/37-hardware-authentication.md)
-- [Fonts](manual/38-fonts.md)
-- [Backgrounds](manual/39-backgrounds.md)
-- [Prompt](manual/40-prompt.md)
-- [Branding](manual/41-branding.md)
-- [Common tweaks](manual/42-common-tweaks.md)
-- [Making your own theme](manual/43-making-your-own-theme.md)
-
-**The Rest**
-
-- [Mac support](manual/44-mac-support.md)
-- [Troubleshooting](manual/45-troubleshooting.md)
-- [FAQ](manual/46-faq.md)
-- [System snapshots](manual/47-system-snapshots.md)
-- [Security](manual/48-security.md)
-- [Omarchy on...](manual/49-omarchy-on.md)
-- [Dual Boot Install](manual/50-dual-boot-install.md)
-- [Unattended Installs](manual/51-unattended-installs.md)
-
-## License
-
-Zumarchy, like the Omarchy project it is based on, is released under the [MIT License](https://opensource.org/licenses/MIT). Original work © the Omarchy authors (DHH / 37signals).
+Zumarchy is a fork of **Omarchy** (© the Omarchy authors, DHH / 37signals) and, like Omarchy, is released under the [MIT License](https://opensource.org/licenses/MIT). All original work remains theirs; Zumarchy's customizations are offered under the same license. With gratitude to the Omarchy project. 💚
