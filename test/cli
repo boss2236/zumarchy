@@ -57,7 +57,7 @@ cleanup() {
 trap cleanup EXIT
 
 output=$("$CLI" --help)
-assert_output_contains "main help renders" "$output" "Omarchy command center"
+assert_output_contains "main help renders" "$output" "Zumarchy command center"
 assert_output_contains "main help includes hardware group" "$output" "hw"
 assert_output_contains "main help includes package group" "$output" "pkg"
 if grep -Eq '^  [a-z0-9-]+[[:space:]].*\([0-9]+\)$' <<<"$output"; then
@@ -272,7 +272,7 @@ output=$("$CLI" system reboot --help)
 assert_output_contains "system command help is safe" "$output" "omarchy-system"
 
 output=$("$CLI" dev benchmark cli --repeat=1)
-assert_output_contains "benchmark command runs" "$output" "Omarchy CLI benchmark"
+assert_output_contains "benchmark command runs" "$output" "Zumarchy CLI benchmark"
 
 "$CLI" theme list >/dev/null
 pass "safe dispatch works for theme list"
@@ -1068,4 +1068,4 @@ assert_output_contains "flag-only parent metadata does not glob against files in
 if output=$("$ROOT/bin/omarchy" '*' 2>&1); then
   fail "wildcard input must not match prefix help"
 fi
-assert_output_contains "wildcard input reports unknown command" "$output" "Unknown Omarchy command"
+assert_output_contains "wildcard input reports unknown command" "$output" "Unknown Zumarchy command"
