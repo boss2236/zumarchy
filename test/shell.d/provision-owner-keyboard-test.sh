@@ -488,7 +488,7 @@ pass "language configuration generates before it persists, forgets an earlier at
   omarchy_form_use_language de
   keyboard_form >"$lang/output"
   [[ $(<"$lang/order") == $'keyboard\nlanguage\nkeyboard\napply jp106' ]] || fail "Esc visits the language picker before asking for the keyboard again" "$(cat "$lang/order")"
-  [[ $(<"$lang/screen") == '--foreground 8 Setup stays in English. Omarchy will be in Japanese once set up.' ]] || fail "only the undrawn language gets the English notice" "$(cat "$lang/screen")"
+  [[ $(<"$lang/screen") == '--foreground 8 Setup stays in English. Zumarchy will be in Japanese once set up.' ]] || fail "only the undrawn language gets the English notice" "$(cat "$lang/screen")"
   : >"$lang/screen"
   omarchy_form_use_language de
   keyboard_form >"$lang/output"
