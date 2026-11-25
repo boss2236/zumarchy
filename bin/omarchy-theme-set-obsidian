@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Sync Omarchy theme to all Obsidian vaults
+# omarchy:summary=Sync Zumarchy theme to all Obsidian vaults
 # omarchy:hidden=true
 
 CURRENT_THEME_DIR="$HOME/.local/state/omarchy/current/theme"

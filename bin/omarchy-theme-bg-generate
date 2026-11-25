@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Draw a theme background from its colors and the Omarchy mark
+# omarchy:summary=Draw a theme background from its colors and the Zumarchy mark
 # omarchy:args=<theme-dir>
 # omarchy:hidden=true
 

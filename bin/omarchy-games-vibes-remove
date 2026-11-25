@@ -32,7 +32,7 @@ fi
 
 if [[ ! -d $VIBES/$GAME_NAME ]]; then
   if [[ -d $OMARCHY_PATH/default/games/vibes/$GAME_NAME ]]; then
-    echo "Error: $GAME_NAME comes with Omarchy and cannot be removed."
+    echo "Error: $GAME_NAME comes with Zumarchy and cannot be removed."
   else
     echo "Error: No game called $GAME_NAME in ~/Games/vibes."
   fi

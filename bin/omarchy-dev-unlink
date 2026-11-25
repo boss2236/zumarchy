@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Restore Omarchy to the package install after reboot
+# omarchy:summary=Restore Zumarchy to the package install after reboot
 # omarchy:group=dev
 # omarchy:args=[--no-reboot]
 
@@ -63,7 +63,7 @@ sudo rm -f "$sudoers_file"
 "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/omarchy-agent-skills-link" "$default_target"
 "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/omarchy-agent-pi-defaults" "$default_target"
 
-echo "Pointed Omarchy at $default_target"
+echo "Pointed Zumarchy at $default_target"
 echo "Agent skills now link to $default_target/default/agents/skills"
 echo
 

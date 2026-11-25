@@ -1,10 +1,10 @@
-# Omarchy
+# Zumarchy
 
-Omarchy is a beautiful, fun & agentic Linux distribution by DHH.
+Zumarchy is a customized Linux distribution built on top of [Omarchy](https://omarchy.org) by DHH — beautiful, fun & agentic, rebuilt and tailored piece by piece.
 
-Read more at [omarchy.org](https://omarchy.org).
+> **Credit & attribution:** Zumarchy is a fork of **Omarchy** (by DHH / 37signals). All of the original foundation, tooling, and design is their work; Zumarchy only layers its own customizations on top. Huge thanks to the Omarchy project. Learn about the original at [omarchy.org](https://omarchy.org).
 
-## The Omarchy Manual
+## The Zumarchy Manual
 
 The manual lives in [`manual/`](manual/), which is its authoritative source.
 
@@ -74,4 +74,4 @@ The manual lives in [`manual/`](manual/), which is its authoritative source.
 
 ## License
 
-Omarchy is released under the [MIT License](https://opensource.org/licenses/MIT).
+Zumarchy, like the Omarchy project it is based on, is released under the [MIT License](https://opensource.org/licenses/MIT). Original work © the Omarchy authors (DHH / 37signals).

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Generate the system locale for an Omarchy language or region
+# omarchy:summary=Generate the system locale for an Zumarchy language or region
 # omarchy:args=<code>
 # omarchy:hidden=true
 

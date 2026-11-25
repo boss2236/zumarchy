@@ -3,7 +3,7 @@
 # omarchy:summary=Configure the bar and its widget layout
 # omarchy:group=bar
 # omarchy:subcommand=use <id> — Use a bar option as the active bar
-# omarchy:subcommand=reset — Return to the built-in Omarchy bar
+# omarchy:subcommand=reset — Return to the built-in Zumarchy bar
 # omarchy:subcommand=defaults — Restore the default bar and service widgets
 # omarchy:subcommand=position [top|bottom|left|right] — Set the bar position, or print it when given none
 # omarchy:subcommand=background [opaque|glassy|none|cycle] — Set the bar background, or print it when given none
@@ -211,7 +211,7 @@ cmd_defaults() {
     --slurpfile defaults "$DEFAULTS_FILE" \
     --argjson widgets "$optional_widgets"
   sync_glass || fail "could not change the blur behind the bar"
-  echo "Restored the default Omarchy bar"
+  echo "Restored the default Zumarchy bar"
 }
 
 cmd_position() {

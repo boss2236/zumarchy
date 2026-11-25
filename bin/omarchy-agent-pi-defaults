@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Set up Omarchy's extensions and defaults for Pi
+# omarchy:summary=Set up Zumarchy's extensions and defaults for Pi
 # omarchy:args=[omarchy-root]
 # omarchy:hidden=true
 

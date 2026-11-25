@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Overwrite the Herdr desktop app's keys with the Omarchy default (backs up your version).
+# omarchy:summary=Overwrite the Herdr desktop app's keys with the Zumarchy default (backs up your version).
 
 set -euo pipefail
 
@@ -21,7 +21,7 @@ else
   if [[ -f $user_keys ]]; then
     backup_keys="$user_keys.bak.$(date +%s)"
     cp -f "$user_keys" "$backup_keys"
-    echo "Replaced $user_keys with the Omarchy default. Saved backup as $backup_keys."
+    echo "Replaced $user_keys with the Zumarchy default. Saved backup as $backup_keys."
   fi
   cp -f "$default_keys" "$user_keys"
 fi

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Measure Omarchy CLI response times
+# omarchy:summary=Measure Zumarchy CLI response times
 # omarchy:args=[--repeat=<count>]
 # omarchy:examples=omarchy dev benchmark cli | omarchy dev benchmark cli --repeat=10
 
@@ -95,7 +95,7 @@ if [[ ! $REPEAT =~ ^[0-9]+$ ]] || (( REPEAT < 1 )); then
   exit 2
 fi
 
-printf 'Omarchy CLI benchmark (%d runs each)\n\n' "$REPEAT"
+printf 'Zumarchy CLI benchmark (%d runs each)\n\n' "$REPEAT"
 run_case "omarchy" "$CLI"
 run_case "omarchy --help" "$CLI" --help
 run_case "omarchy commands" "$CLI" commands

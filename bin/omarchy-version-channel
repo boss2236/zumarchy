@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Print the active Omarchy mirror and package channel
+# omarchy:summary=Print the active Zumarchy mirror and package channel
 
 # Arch Linux ARM's mirrors are the same hosts with an arm- prefix.
 if grep -Eq '^[[:space:]]*Server[[:space:]]*=[[:space:]]*https://(arm-)?stable-mirror\.omarchy\.org/' /etc/pacman.d/mirrorlist; then

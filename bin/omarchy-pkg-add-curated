@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Install packages, without a password for the apps Omarchy curates
+# omarchy:summary=Install packages, without a password for the apps Zumarchy curates
 # omarchy:args=<packages...>
 # omarchy:hidden=true
 
@@ -29,7 +29,7 @@ curated() {
 if (( EUID == 0 )); then
   # The privileged half, reached through pkexec with one package.
   if (( $# != 1 )) || ! curated "$1"; then
-    echo "omarchy-pkg-add-curated: '${1:-}' is not one of Omarchy's curated apps" >&2
+    echo "omarchy-pkg-add-curated: '${1:-}' is not one of Zumarchy's curated apps" >&2
     exit 1
   fi
   exec /usr/bin/pacman -S --noconfirm --needed -- "$1"

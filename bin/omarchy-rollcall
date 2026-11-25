@@ -763,13 +763,13 @@ render_text() {
   jq -r '
     def mark: {pass: "✓", fail: "✗", skip: "–"}[.];
     def line($k; $v): if $v == null or $v == "" then empty else "\($k | . + " " * (10 - length))\($v)" end;
-    "Omarchy roll call\n",
+    "Zumarchy roll call\n",
     line("Machine"; [.machine.vendor, .machine.product, .machine.version, .machine.model] | map(select(. != null and . != "")) | join(" · ")),
     line("CPU"; .machine.cpu),
     line("GPU"; (.machine.gpus // []) | join(", ")),
     line("Platform"; .platform),
     line("Kernel"; .kernel),
-    line("Omarchy"; if .omarchy == "" then "" elif .channel == "" then .omarchy else "\(.omarchy) (\(.channel))" end),
+    line("Zumarchy"; if .omarchy == "" then "" elif .channel == "" then .omarchy else "\(.omarchy) (\(.channel))" end),
     "",
     (.checks[] | "  \(.result | mark) \(.id | . + " " * (14 - length))\(if .result == "skip" then "skipped: " else "" end)\(.detail)"),
     "",

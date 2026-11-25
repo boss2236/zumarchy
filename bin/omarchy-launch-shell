@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Launch the Omarchy shell with its log kept in the journal
+# omarchy:summary=Launch the Zumarchy shell with its log kept in the journal
 # omarchy:hidden=true
 
 # Quickshell only logs to its instance runtime dir (tmpfs), so when the shell

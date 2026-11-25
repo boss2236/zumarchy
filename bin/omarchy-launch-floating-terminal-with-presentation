@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Launch a floating terminal with the Omarchy presentation wrapper
+# omarchy:summary=Launch a floating terminal with the Zumarchy presentation wrapper
 # omarchy:args=<command>
 
 # Export the current theme's gum styling so gum widgets match the active theme

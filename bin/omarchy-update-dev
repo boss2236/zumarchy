@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Update the active Omarchy dev checkout
+# omarchy:summary=Update the active Zumarchy dev checkout
 
 set -euo pipefail
 

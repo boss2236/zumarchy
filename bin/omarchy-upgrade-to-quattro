@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Upgrade a legacy Omarchy install to the package-backed Omarchy quattro layout.
+# omarchy:summary=Upgrade a legacy Zumarchy install to the package-backed Zumarchy quattro layout.
 # omarchy:args=[--yes] [--reboot] [--dev] [--channel stable|rc|edge] [--user USER]
 # omarchy:examples=omarchy upgrade to quattro | omarchy upgrade to quattro --dev
 # omarchy:requires-sudo=true
@@ -149,7 +149,7 @@ if { [[ -n $channel_override ]] || (( channel_override_cli )); } && ! valid_chan
 fi
 
 if ! command -v pacman >/dev/null 2>&1; then
-  fail "This upgrade is only supported on Arch/Omarchy systems with pacman."
+  fail "This upgrade is only supported on Arch/Zumarchy systems with pacman."
 fi
 
 if ! command -v sudo >/dev/null 2>&1 && (( EUID != 0 )); then
@@ -165,7 +165,7 @@ if [[ -z $target_user ]]; then
 fi
 
 if [[ -z $target_user || $target_user == root ]]; then
-  fail "Could not determine the non-root Omarchy user. Re-run with --user USER."
+  fail "Could not determine the non-root Zumarchy user. Re-run with --user USER."
 fi
 
 if ! getent passwd "$target_user" >/dev/null; then
@@ -374,7 +374,7 @@ cleanup_on_exit() {
   # progress line, so a half-finished upgrade otherwise reads as a finished one.
   if (( exit_status != 0 && upgrade_started && ! upgrade_completed )); then
     printf '\n\033[31mUpgrade incomplete - do NOT reboot.\033[0m\n' >&2
-    printf 'The system is part Omarchy 3 and part Omarchy quattro; rebooting now can leave it without a working network or desktop.\n' >&2
+    printf 'The system is part Zumarchy 3 and part Zumarchy quattro; rebooting now can leave it without a working network or desktop.\n' >&2
     printf 'Fix the error reported above and run this script again. Re-running is safe and resumes the remaining steps.\n' >&2
   fi
 
@@ -391,7 +391,7 @@ fi
 backup_suffix=$(date +%Y%m%d%H%M%S)
 
 configure_pacman_channel() {
-  log "Configuring Omarchy pacman repositories ($channel)"
+  log "Configuring Zumarchy pacman repositories ($channel)"
 
   as_root install -d -m 0755 /etc/pacman.d
   if [[ -f /etc/pacman.d/mirrorlist ]]; then
@@ -452,7 +452,7 @@ install_keyrings() {
   # re-downloading can satisfy.
 
   as_root pacman -Syy --noconfirm archlinux-keyring omarchy-keyring || {
-    warn "Keyring package install failed; attempting to trust the Omarchy packaging key directly."
+    warn "Keyring package install failed; attempting to trust the Zumarchy packaging key directly."
     as_root pacman-key --recv-keys 40DFB630FF42BCFFB047046CF0134EE680CAC571 --keyserver keys.openpgp.org || true
     as_root pacman-key --lsign-key 40DFB630FF42BCFFB047046CF0134EE680CAC571 || true
     as_root pacman -Syy --noconfirm archlinux-keyring omarchy-keyring
@@ -694,7 +694,7 @@ configure_snapper_policy() {
     return 0
   fi
 
-  log "Configuring Omarchy snapshot retention"
+  log "Configuring Zumarchy snapshot retention"
   as_root env OMARCHY_PATH=/usr/share/omarchy bash -euo pipefail "$snapper_config_script"
 }
 
@@ -796,7 +796,7 @@ install_omarchy_quattro_packages() {
   )
   local base_packages=()
 
-  log "Upgrading system packages and installing Omarchy quattro packages"
+  log "Upgrading system packages and installing Zumarchy quattro packages"
   (( use_dev_packages )) && log "Using dev packages [omarchy-dev / omarchy-settings-dev]"
   # --noconfirm answers "no" to conflict-removal prompts. --ask 4 preselects
   # removing the conflicting package, which is required for legacy packages like
@@ -816,7 +816,7 @@ install_omarchy_quattro_packages() {
   fi
 
   if [[ -f /usr/share/omarchy/install/omarchy-base.packages ]]; then
-    log "Installing Omarchy quattro default package set"
+    log "Installing Zumarchy quattro default package set"
     mapfile -t base_packages < <(sed -e 's/[[:space:]]*#.*$//' -e '/^[[:space:]]*$/d' /usr/share/omarchy/install/omarchy-base.packages)
     # Some base packages have no aarch64 build.
     if [[ $(uname -m) != "x86_64" && -f /usr/share/omarchy/install/omarchy-x86_64-only.packages ]]; then
@@ -865,7 +865,7 @@ install_hardware_transition_packages() {
   fi
 
   if (( ${#hardware_packages[@]} > 0 )); then
-    log "Installing hardware support needed by the Omarchy quattro layout"
+    log "Installing hardware support needed by the Zumarchy quattro layout"
     as_root pacman -S --needed --noconfirm "${hardware_packages[@]}"
     mark_packages_explicit "${hardware_packages[@]}"
   fi
@@ -932,7 +932,7 @@ remove_retired_default_packages() {
     zoom
   )
 
-  log "Removing packages retired from the Omarchy quattro default install"
+  log "Removing packages retired from the Zumarchy quattro default install"
   local pkg
   local installed_retired=()
   for pkg in "${retired_packages[@]}"; do
@@ -1155,7 +1155,7 @@ USER_UNITS
 }
 
 cleanup_retired_services() {
-  log "Disabling services retired by Omarchy quattro"
+  log "Disabling services retired by Zumarchy quattro"
 
   # iwd is retired alongside the NetworkManager enable it depends on. Do not
   # stop systemd-networkd mid-upgrade; disabling is enough and avoids dropping a
@@ -1215,7 +1215,7 @@ suppress_hyprland_config_reload() {
   # silently does nothing and the only evidence is the config error bar that
   # shows up minutes later.
   if ! run_as_user_wayland_session true >/dev/null 2>&1; then
-    warn "Could not reach the live Hyprland session; it will report config errors during the swap, and the Omarchy shell will start after reboot."
+    warn "Could not reach the live Hyprland session; it will report config errors during the swap, and the Zumarchy shell will start after reboot."
     return 0
   fi
 
@@ -1260,7 +1260,7 @@ restore_hyprland_config_reload() {
 ensure_sleep_lock_service() {
   [[ -S $target_runtime_dir/bus ]] || return 0
 
-  log "Ensuring Omarchy sleep lock service is enabled"
+  log "Ensuring Zumarchy sleep lock service is enabled"
   run_as_user_session systemctl --user daemon-reload >/dev/null 2>&1 || true
   run_as_user_session systemctl --user reset-failed omarchy-sleep-lock.service >/dev/null 2>&1 || true
   if ! run_as_user_session systemctl --user enable --now omarchy-sleep-lock.service >/dev/null 2>&1; then
@@ -1271,16 +1271,16 @@ ensure_sleep_lock_service() {
 run_post_upgrade_migrations() {
   local pending_status
 
-  log "Running Omarchy migrations"
+  log "Running Zumarchy migrations"
   if ! run_as_user_omarchy OMARCHY_UPGRADE_TO_QUATTRO_LIVE=1 omarchy-migrate; then
-    fail "Omarchy migrations did not complete. Fix the error above and rerun the upgrade before rebooting."
+    fail "Zumarchy migrations did not complete. Fix the error above and rerun the upgrade before rebooting."
   fi
   if run_as_user_omarchy omarchy-migrate --pending >/dev/null; then
-    fail "Omarchy migrations are still pending. Rerun the upgrade before rebooting."
+    fail "Zumarchy migrations are still pending. Rerun the upgrade before rebooting."
   else
     pending_status=$?
     if (( pending_status != 1 )); then
-      fail "Could not verify that Omarchy migrations completed. Rerun the upgrade before rebooting."
+      fail "Could not verify that Zumarchy migrations completed. Rerun the upgrade before rebooting."
     fi
   fi
 }
@@ -1365,7 +1365,7 @@ apply_firewall_defaults() {
     return 0
   fi
 
-  log "Applying Omarchy firewall defaults"
+  log "Applying Zumarchy firewall defaults"
   as_root env OMARCHY_PATH=/usr/share/omarchy PATH="$root_path" \
     bash -euo pipefail "$firewall_script" ||
     warn "Could not apply firewall defaults; run 'sudo bash $firewall_script' after reboot."
@@ -1392,7 +1392,7 @@ should_enable_sddm_autologin() {
 }
 
 apply_system_transition() {
-  log "Applying Omarchy quattro system transition"
+  log "Applying Zumarchy quattro system transition"
   [[ -d /usr/share/omarchy ]] || fail "/usr/share/omarchy was not installed."
 
   local browser_policy_helper=/usr/share/omarchy/install/helpers/browser-policy.sh
@@ -1540,7 +1540,7 @@ EOF
 }
 
 apply_user_transition() {
-  log "Applying Omarchy quattro user transition"
+  log "Applying Zumarchy quattro user transition"
   [[ -d /usr/share/omarchy ]] || fail "/usr/share/omarchy was not installed."
 
   run_as_user env \
@@ -1770,8 +1770,8 @@ migrate_uwsm_env_customizations() {
 
     mkdir -p "$(dirname "$dest")"
     {
-      echo '# Preserved custom ~/.config/uwsm/env content during Omarchy quattro upgrade.'
-      echo '# Exact legacy Omarchy-managed setup lines were replaced with no-op markers where safe.'
+      echo '# Preserved custom ~/.config/uwsm/env content during Zumarchy quattro upgrade.'
+      echo '# Exact legacy Zumarchy-managed setup lines were replaced with no-op markers where safe.'
       cat "$tmp"
     } >"$dest"
   fi
@@ -2396,7 +2396,7 @@ refresh_current_theme_after_upgrade() {
   theme_name=${theme_name//$'\n'/}
   [[ -n $theme_name ]] || theme_name="Tokyo Night"
 
-  log "Refreshing current theme with Omarchy quattro templates ($theme_name)"
+  log "Refreshing current theme with Zumarchy quattro templates ($theme_name)"
 
   runtime_dir="$target_runtime_dir"
   [[ -d $runtime_dir ]] || runtime_dir=/tmp

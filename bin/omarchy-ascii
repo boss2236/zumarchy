@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# omarchy:summary=Render text as ASCII art in the font the Omarchy logo is drawn in
+# omarchy:summary=Render text as ASCII art in the font the Zumarchy logo is drawn in
 # omarchy:args=[text...]
-# omarchy:examples=omarchy ascii Omarchy | omarchy ascii "Hello there"
+# omarchy:examples=omarchy ascii Zumarchy | omarchy ascii "Hello there"
 
 set -o pipefail
 

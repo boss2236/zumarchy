@@ -617,7 +617,7 @@ keyboard_form() {
     step "$(omarchy_form_text setupForm.machineIntro)"
     if ! omarchy_form_language_drawn "$language"; then
       # English on purpose: the console cannot draw this language to say it in.
-      say --foreground 8 "Setup stays in English. Omarchy will be in $(omarchy_form_language_label "$language") once set up."
+      say --foreground 8 "Setup stays in English. Zumarchy will be in $(omarchy_form_language_label "$language") once set up."
       echo
     fi
 

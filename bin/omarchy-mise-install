@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Retire a mise wrapper an older Omarchy release left in ~/.local/bin
+# omarchy:summary=Retire a mise wrapper an older Zumarchy release left in ~/.local/bin
 # omarchy:args=<package> [command-name [bin-name]]
 # omarchy:hidden=true
 

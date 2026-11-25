@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Run a command while holding the Omarchy update lock
+# omarchy:summary=Run a command while holding the Zumarchy update lock
 # omarchy:args=<held|run> [command] [args...]
 # omarchy:hidden=true
 
